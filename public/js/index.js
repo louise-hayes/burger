@@ -1,8 +1,7 @@
-// $(addBurger).on("submit", handleFormSubmit);
-
+// Make sure we wait to attach our handlers until the DOM is fully loaded.
 $(function () {
 
-    $(".addBurger").on("submit", function (event) {
+    $("#addBurger").on("submit", function (event) {
         // Make sure to preventDefault on a submit event.
         event.preventDefault();
         console.log("burger submit");
@@ -12,7 +11,7 @@ $(function () {
 
         var newBurger = {
             burgername: $("#burger-name").val().trim(),
-            devoured: FALSE,
+            devoured: 0,
             id: $(this).data("id")
         }
         // Send the POST request.
@@ -28,28 +27,22 @@ $(function () {
         );
     });
 
-    $(".devourButton").on("click", function (event) {
-        
-        var updateBurger = {
-            burgername: $("#burger-name").val().trim(),
-            devoured: TRUE,
-            id: $(this).data("id")
+    $(".change-devoured").on("click", function (event) {
+        var id = $(this).data("id");
+        var newBurgerState = {
+            devoured: 1
         }
-    
+
         // Send the PUT request.
         $.ajax("/updateOne/" + id, {
             type: "PUT",
-            data: updateBurger
+            data: newBurgerState
         }).then(
             function () {
-                console.log("changed devoured to", devoured);
+                // console.log("changed devoured to", devoured);
                 // Reload the page to get the updated list
                 location.reload();
             }
         );
     });
-
-
-    
-  
 });
