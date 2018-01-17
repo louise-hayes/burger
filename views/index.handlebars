@@ -1,25 +1,19 @@
-{{!-- image and title --}}
-<h1>Eat De Burger </h1>
-<img src="../img/burger.jpg">
-
 <body>
+    {{!-- image and title --}}
+
+    <div class="title">
+        <h1>Eat De Burger </h1>
+        <img src="../img/burger.jpg">
+
+    </div>
     <div class="container ">
         <div id="newBurgers" class="col-md-2">
             {{!-- box display burgers --}}
             <ul>
-                {{#each burgers}} 
-                    {{#unless devoured}} 
-                        {{> burgers/burger-block devoured=true}} 
-                    {{/unless}} {{!--
-                                <li>{{burger_name}}</li> --}}
-                 {{/each}}
+                {{#each burgers}} {{#unless devoured}} {{> burgers/burger-block devoured=true}} {{/unless}} {{!--
+                <li>{{burger_name}}</li> --}} {{/each}}
             </ul>
         </div>
-
-
-     
-
-        
 
         {{!-- Box to submit new burger --}}
         <div class="form-group col-md-2">
@@ -35,16 +29,12 @@
                 <button type="submit" class="btn btn-success submit">Add a Burger</button>
             </form>
         </div>
-           {{!-- box display devoured burgers --}}
+        {{!-- box display devoured burgers --}}
 
         <div id="devouredBurgers" class="col-md-2">
             {{!-- box display burgers --}}
             <ul>
-                {{#each burgers }} 
-                    {{#if devoured}} 
-                        {{> burgers/burger-block devoured=0}} 
-                    {{/if}} 
-                {{/each}}
+                {{#each burgers }} {{#if devoured}} {{> burgers/burger-block devoured=0}} {{/if}} {{/each}}
             </ul>
         </div>
 
